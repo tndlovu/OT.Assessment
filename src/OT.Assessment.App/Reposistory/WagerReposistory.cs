@@ -20,9 +20,9 @@ namespace OT.Assessment.App.Reposistory
                 .GroupBy(gb => gb.AccountId)
                 .Select(tsp => new TopSpenderModel
                     {
-                    AccountId = tsp.Select(x => x.AccountId.ToString()).FirstOrDefault(),
-                    Username = tsp.Select(un=>un.Username).FirstOrDefault(),
-                    TotalAmountSpend = tsp.Sum(am=>am.Amount).ToString()
+                    AccountId = tsp.Select(x => x.AccountId.ToString().Trim()).FirstOrDefault(),
+                    Username = tsp.Select(un=>un.Username.Trim()).FirstOrDefault(),
+                    TotalAmountSpend = tsp.Sum(am=>am.Amount).ToString().Trim()
                     })
                 .OrderBy(ob => ob.Username)
                 .ToList()

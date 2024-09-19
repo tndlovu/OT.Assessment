@@ -35,12 +35,17 @@ builder.Services.AddCors(o => o.AddPolicy("OT.Assessment.App", builder =>
     builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
 }));
 builder.Services.AddScoped<IWagerService, WagerService>();
-builder.Services.AddScoped<IWagerReposistory, WagerReposistory>();
 builder.Services.AddScoped<IRabbitMQService, RabbitMQService>();
-builder.Services.AddScoped<IRabbitMQReposistory, RabbitMQReposistory>();
-builder.Services.AddScoped< IProviderService,ProviderService>();
+builder.Services.AddScoped<IProviderService,ProviderService>();
 builder.Services.AddScoped<IGameService, GameService>();
 builder.Services.AddScoped<IPlayerService, PlayerService>();
+
+//RabbitMQReposistory
+builder.Services.AddScoped<IRabbitMQReposistory, RabbitMQReposistory>();
+builder.Services.AddScoped<IProviderReposistory, ProviderReposistory>();
+builder.Services.AddScoped<IPlayerReposistory, PlayerReposistory>();
+builder.Services.AddScoped<IGameReposistory, GameReposistory>();
+builder.Services.AddScoped<IWagerReposistory, WagerReposistory>();
 
 builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(options =>

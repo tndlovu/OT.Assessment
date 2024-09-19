@@ -14,6 +14,9 @@ namespace OT.Assessment.App.Data
             }
 
             public DbSet<WagerEventModel> WagerEvent { get; set; }=null;
+            public DbSet<Provider> Provider { get; set; } = null;
+            public DbSet<Game> Games { get; set; } = null;
+            public DbSet<Player> Players { get; set; } = null;
         }
         }
     

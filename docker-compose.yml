@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  ot.assessment.app:
+    image: ${DOCKER_REGISTRY-}otassessmentapp
+    build:
+      context: .
+      dockerfile: src\OT.Assessment.App\Dockerfile

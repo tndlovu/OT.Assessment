@@ -1,16 +1,43 @@
-﻿namespace OT.Assessment.App.Reposistory
+﻿using OT.Assessment.App.Data;
+
+namespace OT.Assessment.App.Reposistory
     {
     public class ProviderReposistory : IProviderReposistory
         {
+        private readonly ApplicationDbContext _context;
+        public ProviderReposistory(ApplicationDbContext context)
+            {
+            _context = context;
+            }
         public Task<Provider> GetProviderByName(string name)
             {
-            Provider provider = new Provider();
+            Provider provider = _context.Provider.Where(pro => pro.ProviderName == name).FirstOrDefault();
             return  Task.FromResult(provider);
             }
 
         public Task<bool> ProviderByNameExists(string name)
             {
-            //Provider provider = new Provider();
+                if(string.IsNullOrEmpty(name))
+                    return Task.FromResult(false);
+
+                if(_context.Provider.Where(pro=>pro.ProviderName == name)==null)
+                    return Task.FromResult(false);
+
+                return Task.FromResult(true);
+            }
+        public Task<bool> AddProviderAsync(Provider provider)
+            {
+            if(provider == null)
+                {
+                return Task.FromResult(false);
+                }
+            try
+                {
+                _context.Provider.Add(provider);
+                }catch(Exception ex)
+                {
+                return Task.FromResult(false);
+                }
             return Task.FromResult(true);
             }
         }

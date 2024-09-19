@@ -13,4 +13,12 @@
     <PackageReference Include="NBomber.Http" Version="5.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="reports\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\OT.Assessment.App\OT.Assessment.App.csproj" />
+  </ItemGroup>
+
 </Project>

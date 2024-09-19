@@ -16,21 +16,21 @@ namespace OT.Assessment.App.Services
         private readonly IPlayerService _playerService;
 
         public RabbitMQService(IProviderService providerSevice,
-                                IPlayerService playerService)
+                                IPlayerService playerService,
+                                IRabbitMQReposistory rabbitMQReposistory)
             {
 
-            this._rabbitMQReposistory = new RabbitMQReposistory();
+            this._rabbitMQReposistory = rabbitMQReposistory;
             _providerSevice = providerSevice;
             _playerService = playerService;
             }
         public async Task<bool> PublishWagerEventToRabbitMq(WagerEventModel wagerEvent)
             {
             var result = false;
-            if(!ValidateWageretails(wagerEvent))
-                return result;
+            //if(!ValidateWageretails(wagerEvent))
+            //    return result;
 
             result = _rabbitMQReposistory.SaveWagerEventToRabbitMq(wagerEvent);
-
             return await Task.FromResult(result);
             }
 

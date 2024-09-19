@@ -5,16 +5,34 @@ namespace OT.Assessment.App.Services
         {
         private readonly IProviderReposistory _providerReposistory;
 
-        public ProviderService()
+        public ProviderService(IProviderReposistory providerReposistory)
             {
-            _providerReposistory = new ProviderReposistory();
+            _providerReposistory = providerReposistory;
             }
-        public Task<bool> ProviderExistsAsync(string providerName)
+        public async Task<bool> ProviderExistsAsync(string providerName)
             {
             //Code to retrieve Provider Name
-            var result = _providerReposistory.ProviderByNameExists(providerName);
+            var providerExists = await _providerReposistory.ProviderByNameExists(providerName);
+            if (!providerExists)
+                return false;
 
-            return Task.FromResult(true);
+            return true;
+            }
+
+        public async Task<bool> AddProviderAsync(Provider provider)
+            {
+            //Code to retrieve Provider Name
+            var providerAdded = await _providerReposistory.AddProviderAsync(provider);
+
+            if (!providerAdded)
+                return false;
+
+            return true;
+            }
+        public async Task<Provider> GetProviderByNameAsync(string providerName)
+            {
+            var provider =await  _providerReposistory.GetProviderByName(providerName);
+            return provider;
             }
         }
     }

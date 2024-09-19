@@ -27,7 +27,7 @@ namespace OT.Assessment.App.Reposistory
                 }
             catch (Exception ex)
                 {
-                Console.WriteLine($"Reuest:{0}, Errror{1}", wagerEvent, ex.Message);
+                Console.WriteLine($"Request:{0}, Errror{1}", wagerEvent, ex.Message);
                 return false;
                 }
             return true;

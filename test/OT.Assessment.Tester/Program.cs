@@ -1,8 +1,24 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 
+using Microsoft.EntityFrameworkCore;
+using OT.Assessment.App.Reposistory;
+using OT.Assessment.App.Reposistory.IReposistory;
+using OT.Assessment.App.Services;
+using OT.Assessment.App.Services.IServices;
+
 var bg = new BogusGenerator();
 var total = bg.Generate();
+
+//IWagerService _wagerService;
+//var WagerServiceScenario = Scenario.Create("wager_service_scenario", async context =>
+//{
+//    var opions = new DbContextOptions();
+//    ApplicationDbContext context = new ApplicationDbContext();
+//    IWagerReposistory wagerReposistory = new WagerReposistory();
+
+//    _wagerService = new WagerService();
+//});
 
 var scenario = Scenario.Create("hello_world_scenario", async context =>
     {

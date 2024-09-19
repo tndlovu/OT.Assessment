@@ -7,7 +7,6 @@ namespace OT.Assessment.App.Controllers
     [Route("api/[controller]/[action]")]
     public class PlayerController : ControllerBase
     {
-        //private IWagerReposistory _wagerReposistory { get; set; }
         private IRabbitMQService _rabbitMQService { get; set; }
         private readonly IPlayerService _playerService;
         private readonly IWagerService _wagerService;
@@ -16,7 +15,7 @@ namespace OT.Assessment.App.Controllers
                                  IPlayerService playerService,
                                  IWagerService wagerService)
             { 
-            //this._wagerReposistory = wagerReposistory;
+
             this._rabbitMQService = rabbitMQService;
             this._playerService=playerService;
             this._wagerService = wagerService;
@@ -47,12 +46,10 @@ namespace OT.Assessment.App.Controllers
             }
 
         //GET api/player/topSpenders?count=10        
-        [HttpGet("/api/[controller]/[action]/{numberOfRecords}")]
-        public async Task<ActionResult> topSpenders(int numberOfRecords)
+        [HttpGet("/api/[controller]/[action]")]
+        public async Task<ActionResult> topSpenders(int count)
             {
-            //
-            var count = numberOfRecords;
-            var results = await _wagerService.GetTopSpenders(numberOfRecords);
+            var results = await _wagerService.GetTopSpenders(count);
             return Ok(results.OrderBy(od=>od.TotalAmountSpend));
             }
         }
