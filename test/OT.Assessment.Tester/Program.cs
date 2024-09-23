@@ -2,10 +2,10 @@
 
 
 using Microsoft.EntityFrameworkCore;
-using OT.Assessment.App.Reposistory;
-using OT.Assessment.App.Reposistory.IReposistory;
-using OT.Assessment.App.Services;
-using OT.Assessment.App.Services.IServices;
+using OT.Assessment.Reposistory;
+using OT.Assessment.Reposistory.IReposistory;
+using OT.Assessment.Services;
+using OT.Assessment.Services.IServices;
 
 var bg = new BogusGenerator();
 var total = bg.Generate();

@@ -11,9 +11,10 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0-nanoserver-1809 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["./OT.Assessment.App.csproj", "OT.Assessment.App/"]
-COPY ["src/Models/Models.csproj", "Models/"]
-RUN dotnet restore "./src/OT.Assessment.App/OT.Assessment.App.csproj"
+COPY ["src/OT.Assessment.App/OT.Assessment.App.csproj", "src/OT.Assessment.App/"]
+COPY ["src/OT.Assessment.App.Data.DataAccess/OT.Assessment.Data.DataAccess.csproj", "src/OT.Assessment.App.Data.DataAccess/"]
+COPY ["src/OT.Assessment.Reposistories/OT.Assessment.Reposistories.csproj", "src/OT.Assessment.Reposistories/"]
+RUN dotnet restore "./OT.Assessment.App/OT.Assessment.App.csproj"
 COPY . .
 WORKDIR "/src/src/OT.Assessment.App"
 RUN dotnet build "./OT.Assessment.App.csproj" -c %BUILD_CONFIGURATION% -o /app/build

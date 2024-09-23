@@ -52,7 +52,7 @@ The API must include the following endpoints:
       "totalPages": 0
     }
     ```
-- **GET** `api/player/topSpenders?count=10`: Returns the top {count} players based on their total spending.
+- **GET** `api/player/topSpenders?count=10`: Returns the top {count} Player based on their total spending.
     ```json
     {
         "accountId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",

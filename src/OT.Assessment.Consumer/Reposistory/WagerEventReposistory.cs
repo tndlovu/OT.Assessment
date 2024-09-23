@@ -1,21 +1,27 @@
-﻿using OT.Assessment.Consumer.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using OT.Assessment.Consumer.Data;
+using OT.Assessment.Data.DataAccess;
 
 namespace OT.Assessment.Consumer.Reposistory
     {
     internal class WagerEventReposistory: IWagerEventReposistory
         {
-        private ApplicationDbContext _dbContext;
-        public WagerEventReposistory(ApplicationDbContext dbContext)
+        private AssessmentDbContext _dbContext;
+        public WagerEventReposistory(AssessmentDbContext dbContext)
             {
              this._dbContext = dbContext;
             }
-        public WagerEventModel SavePlayeWagerRecord(WagerEventModel model)
+        public WagerEventModel SavePlayerWagerRecord(WagerEventModel model)
             {
-            if (_dbContext.SavePlayerWagerRecord(model))
+            try
                 {
-                return model;
+                _dbContext.WagerEvent.Add(model);
+                _dbContext.SaveChanges();
+                }catch (Exception ex) 
+                {
+                return null;
                 }
-            return null;
+            return model;
             }
         }
     }

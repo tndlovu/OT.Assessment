@@ -2,8 +2,12 @@
 using System.Text.Json;
 using Microsoft.Extensions.Configuration;
 using OT.Assessment.Consumer.Data;
+using OT.Assessment.Data.DataAccess;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using Microsoft.EntityFrameworkCore.SqlServer;
+using OT.Assessment.Reposistory;
+using OT.Assessment.Reposistory.IReposistory;
 
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureAppConfiguration(config =>
@@ -18,11 +22,19 @@ var host = Host.CreateDefaultBuilder(args)
       
     })
     .Build();
+
 var service = host.Services.CreateScope();
+var Config = host.Services.GetRequiredService<IConfiguration>();
+string connectionString = Config.GetConnectionString("DatabaseConnection");
+
 var collection = new ServiceCollection();
 IServiceCollection serviceCollection = collection.AddScoped<IWagerEventService, WagerEventService>();
 collection.AddScoped<IPlayerReposistory, PlayerReposistory>();
 collection.AddScoped<ApplicationDbContext>();
+collection.AddDbContext<AssessmentDbContext>(
+    options =>
+    options.UseSqlServer(connectionString)
+    );
 collection.AddScoped<IWagerEventReposistory, WagerEventReposistory>();
 
 var provider = collection.BuildServiceProvider();
@@ -32,7 +44,7 @@ var logger = host.Services.GetRequiredService<ILogger<Program>>();
 logger.LogInformation("Application started {time:yyyy-MM-dd HH:mm:ss}", DateTime.Now);
 
 
-var Config = host.Services.GetRequiredService<IConfiguration>();
+
 string nameOfQueue = Config.GetValue<string>("QueueName");
 string hostName = Config.GetValue<string>("HostName");
 

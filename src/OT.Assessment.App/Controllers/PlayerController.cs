@@ -8,16 +8,16 @@ namespace OT.Assessment.App.Controllers
     public class PlayerController : ControllerBase
     {
         private IRabbitMQService _rabbitMQService { get; set; }
-        private readonly IPlayerService _playerService;
+        private readonly IPlayerervice _Playerervice;
         private readonly IWagerService _wagerService;
 
         public PlayerController( IRabbitMQService rabbitMQService,
-                                 IPlayerService playerService,
+                                 IPlayerervice Playerervice,
                                  IWagerService wagerService)
             { 
 
             this._rabbitMQService = rabbitMQService;
-            this._playerService=playerService;
+            this._Playerervice=Playerervice;
             this._wagerService = wagerService;
             }
 
@@ -35,7 +35,7 @@ namespace OT.Assessment.App.Controllers
         [HttpGet("/api/[controller]/{playerId}/[action]")]
         public async Task<ActionResult> casino( string playerId )
             {
-            PlayerGamesModel returnValue= new PlayerGamesModel();
+            PlayerGameModel returnValue= new PlayerGameModel();
             var result= await _wagerService.GetWagersForPlayer(playerId);
             var total = result.Sum(wa => decimal.Parse(wa.Amount));
             returnValue.Wagers = result;

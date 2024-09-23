@@ -14,6 +14,21 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Data\**" />
+	  <Compile Remove="Reposistory\**" />
+	  <Compile Remove="Services\**" />
+	  <Content Remove="Data\**" />
+	  <Content Remove="Reposistory\**" />
+	  <Content Remove="Services\**" />
+	  <EmbeddedResource Remove="Data\**" />
+	  <EmbeddedResource Remove="Reposistory\**" />
+	  <EmbeddedResource Remove="Services\**" />
+	  <None Remove="Data\**" />
+	  <None Remove="Reposistory\**" />
+	  <None Remove="Services\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="microsoft.entityframeworkcore" Version="8.0.8" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.8" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
@@ -28,7 +43,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Models\Models.csproj" />
+	  <ProjectReference Include="..\..\Models\OT.Assessment.App.Models.csproj" />
+	  <ProjectReference Include="..\..\OT.Assessment.App.Services\OT.Assessment.Services.csproj" />
+	  <ProjectReference Include="..\OT.Assessment.App.Data.DataAccess\OT.Assessment.Data.DataAccess.csproj" />
+	  <ProjectReference Include="..\OT.Assessment.Reposistories\OT.Assessment.Reposistories.csproj" />
 	</ItemGroup>
 
 </Project>

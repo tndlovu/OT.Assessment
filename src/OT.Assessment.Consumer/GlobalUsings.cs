@@ -8,4 +8,6 @@ global using OT.Assessment.Consumer.Reposistory;
 global using OT.Assessment.Consumer.Reposistory.IReposistory;
 global using OT.Assessment.Consumer.Services.IServices;
 global using OT.Assessment.Consumer.Services;
-using OT.Assessment.Consumer.Data;
+global using OT.Assessment.Consumer.Data;
+global using Microsoft.EntityFrameworkCore;
+global using OT.Assessment.Reposistory;

@@ -10,7 +10,8 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0-nanoserver-1809 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/OT.Assessment.Consumer/OT.Assessment.Consumer.csproj", "src/OT.Assessment.Consumer/"]
-COPY ["Models/Models.csproj", "Models/"]
+COPY ["src/OT.Assessment.App.Data.DataAccess/OT.Assessment.Data.DataAccess.csproj", "src/OT.Assessment.App.Data.DataAccess/"]
+COPY ["src/OT.Assessment.Reposistories/OT.Assessment.Reposistories.csproj", "src/OT.Assessment.Reposistories/"]
 RUN dotnet restore "./src/OT.Assessment.Consumer/OT.Assessment.Consumer.csproj"
 COPY . .
 WORKDIR "/src/src/OT.Assessment.Consumer"

@@ -9,10 +9,17 @@
 		<DockerfileContext>..\..</DockerfileContext>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <Compile Remove="Reposistory\IReposistory\IPlayerReposistory.cs" />
+	  <Compile Remove="Reposistory\PlayerReposistory.cs" />
+	</ItemGroup>
+
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.5" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.8" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
@@ -23,7 +30,9 @@
 
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Models\Models.csproj" />
+	  <ProjectReference Include="..\..\Models\OT.Assessment.App.Models.csproj" />
+	  <ProjectReference Include="..\OT.Assessment.App.Data.DataAccess\OT.Assessment.Data.DataAccess.csproj" />
+	  <ProjectReference Include="..\OT.Assessment.Reposistories\OT.Assessment.Reposistories.csproj" />
 	</ItemGroup>
 
 

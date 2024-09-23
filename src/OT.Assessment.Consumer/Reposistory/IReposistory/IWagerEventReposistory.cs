@@ -2,6 +2,6 @@
     {
     public interface IWagerEventReposistory
         {
-        WagerEventModel SavePlayeWagerRecord(WagerEventModel model);
+        WagerEventModel SavePlayerWagerRecord(WagerEventModel model);
         }
     }
