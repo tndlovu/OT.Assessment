@@ -1,18 +1,17 @@
-# Online Betting Data Capture and Analytics System (Solution)
+# API and Cunsummer projects
 
 ## Scenario
 In the dynamic world of online betting, capturing and analyzing data is paramount for business success. Every time a player initiates a spin in a casino game, it's essential to capture and store relevant data. This project aims to develop an API and service capable of receiving, storing, and retrieving player casino data.
 
 ## Pre-Requisites
-- **RabbitMQ:** Setup a local RabbitMQ instance running on `localhost` with credentials `guest/guest`.
+- **RabbitMQ:** Set up a local RabbitMQ instance running on `localhost` with credentials `guest/guest`.
     > [Run RabbitMQ Windows Service](https://www.rabbitmq.com/docs/install-windows#installer) or
- 
     > [Docker Compose Rabbit Image](docker/RabbitMQ/docker-up.bat)
-- **SQL Server:** Setup a local SQL Server 2022 Developer Edition with the connection string: `"SERVER=localhost; DATABASE=OT_Assessment_DB; Integrated Security=SSPI;"`.
+- **SQL Server:** Setup a local SQL Server 2022 Developer Edition (or EXPRESS) with the connection string: `"SERVER=localhost; DATABASE=OT_Assessment_DB; Integrated Security=SSPI;"`.
 
 ## Solution
 ### 1. API Service (OT.Assessment.App)
-There is an API that provides the following endpoints:
+An API poject that provides the following endpoints:
 - **POST** `api/player/casinowager`: Receives player casino wager events to publish to the local RabbitMQ queue.
 - The format of the record is as follows
     ```json
@@ -64,9 +63,9 @@ There is an API that provides the following endpoints:
     }
     ```
 ### 2. .NET Service (OT.Assessment.Consumer)
-This service will consume messages published to the aforementioned queue and store consumed messages in a database:
-- Save Player Account to database if it does not already exist.
-- Save entries to the Player Casino Wager table.
+This service will consume messages published to the aforementioned queue (RabbitMQ) and store consumed messages in a database (the SQL Server):
+- Save the Player Account to the database if it does not already exist.
+- Save entries to the Player Casino Wager table *see files under folder:.
 
 ### 3. SQL Database
 Design tables, indexes, keys, and stored procedures necessary for populating and retrieving data from:
