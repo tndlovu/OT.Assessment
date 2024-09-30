@@ -63,9 +63,9 @@ An API poject that provides the following endpoints:
     }
     ```
 ### 2. .NET Service (OT.Assessment.Consumer)
-This service will consume messages published to the aforementioned queue (RabbitMQ) and store consumed messages in a database (the SQL Server):
+This service will consume messages published to the queue above (RabbitMQ) and store consumed messages in a database (the SQL Server):
 - Save the Player Account to the database if it does not already exist.
-- Save entries to the Player Casino Wager table *see files under folder:.
+- Save entries to the Player Casino Wager table *see file: DatabaseGenerate.sql.
 
 ### 3. SQL Database
 Design tables, indexes, keys, and stored procedures necessary for populating and retrieving data from:
