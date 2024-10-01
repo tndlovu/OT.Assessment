@@ -10,16 +10,6 @@ using OT.Assessment.Services.IServices;
 var bg = new BogusGenerator();
 var total = bg.Generate();
 
-//IWagerService _wagerService;
-//var WagerServiceScenario = Scenario.Create("wager_service_scenario", async context =>
-//{
-//    var opions = new DbContextOptions();
-//    ApplicationDbContext context = new ApplicationDbContext();
-//    IWagerReposistory wagerReposistory = new WagerReposistory();
-
-//    _wagerService = new WagerService();
-//});
-
 var scenario = Scenario.Create("hello_world_scenario", async context =>
     {
         var body = JsonSerializer.Serialize(total[(int)context.InvocationNumber]);
